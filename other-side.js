@@ -3,16 +3,21 @@
     var otherDiv = document.getElementById('other');
     var map, other;
     function initMap() {
+        // Madrid (sinde the its well known and the other side is in New Zeeland, not somewhere in an ocean)
+        var DEFAULT_LOCATION = {
+            lat: 40.4419125,
+            lng: -3.8723395
+        };
         map = new google.maps.Map(mapDiv, {
-            center: {lat: 46.7834818, lng: 23.546473},
-            zoom: 8,
+            center: DEFAULT_LOCATION,
+            zoom: 7,
             mapTypeControlOptions: {
                 mapTypeIds: ['roadmap', 'satellite']
             }
         });
         other = new google.maps.Map(otherDiv, {
-            center: {lat: -46.7834818, lng: 23.546473 + 180},
-            zoom: 8,
+            center: {lat: - DEFAULT_LOCATION.lat, lng: DEFAULT_LOCATION.lng + 180},
+            zoom: 7,
             disableDefaultUI: true
         });
 
