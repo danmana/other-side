@@ -4,14 +4,14 @@
     var map, other;
     function initMap() {
         map = new google.maps.Map(mapDiv, {
-            center: {lat: -34.397, lng: 150.644},
+            center: {lat: 46.7834818, lng: 23.546473},
             zoom: 8,
             mapTypeControlOptions: {
                 mapTypeIds: ['roadmap', 'satellite']
             }
         });
         other = new google.maps.Map(otherDiv, {
-            center: {lat: 34.397, lng: 150.644 + 180},
+            center: {lat: -46.7834818, lng: 23.546473 + 180},
             zoom: 8,
             disableDefaultUI: true
         });
