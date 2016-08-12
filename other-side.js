@@ -3,7 +3,7 @@
     var otherDiv = document.getElementById('other');
     var map, other;
     function initMap() {
-        // Madrid (since it's well known and the other side is in New Zeeland, not somewhere in an ocean)
+        // Madrid (since it's well known and the other side is in New Zealand, not somewhere in an ocean)
         var DEFAULT_LOCATION = {
             lat: 40.44818318159315,
             lng: -3.7405035624999594
@@ -19,6 +19,14 @@
             center: {lat: - DEFAULT_LOCATION.lat, lng: DEFAULT_LOCATION.lng + 180},
             zoom: 7,
             disableDefaultUI: true
+        });
+
+        var info = document.getElementById('info-text');
+        other.controls[google.maps.ControlPosition.TOP_CENTER].push(info);
+
+        var ok = document.getElementById('ok');
+        ok.addEventListener('click', function(){
+            info.style.display = 'none';
         });
 
         // Create the search box and link it to the UI element.
