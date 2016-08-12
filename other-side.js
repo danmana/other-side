@@ -22,12 +22,22 @@
         });
 
         var info = document.getElementById('info-text');
-        other.controls[google.maps.ControlPosition.TOP_CENTER].push(info);
+        other.controls[google.maps.ControlPosition.TOP_LEFT].push(info);
+        //info.style.display = 'none';
 
         var ok = document.getElementById('ok');
+        var infoIcon = document.getElementById('info-icon');
         ok.addEventListener('click', function(){
             info.style.display = 'none';
+            infoIcon.style.display = 'block';
         });
+
+
+        infoIcon.addEventListener('click', function(){
+            info.style.display = 'block';
+            infoIcon.style.display = 'none';
+        });
+        other.controls[google.maps.ControlPosition.TOP_RIGHT].push(infoIcon);
 
         // Create the search box and link it to the UI element.
         var input = document.getElementById('pac-input');

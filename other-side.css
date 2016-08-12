@@ -63,14 +63,34 @@ body {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
+#info-icon {
+    background: white;
+    border-radius: 50%;
+    padding: 4px;
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 18px;
+    width: 16px;
+    height: 16px;
+    text-align: center;
+    line-height: 16px;
+    margin-right: 10px;
+    margin-top: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    cursor:pointer;
+}
+#info-icon:active {
+    opacity: 0.9;
+}
+
 #info-text {
+    display: none;
     font-family: Roboto, Arial, sans-serif;
     font-size: 12px;
     padding: 10px 20px;
     background: white;
     border-radius: 2px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-    margin-top: 10px;
+    margin: 10px;
 }
 
 #ok {
@@ -81,6 +101,7 @@ body {
     border-radius: 2px;
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.3);
     cursor: pointer;
+    border: 1px solid #437dda;
 }
 #ok:active {
     opacity: 0.9;
