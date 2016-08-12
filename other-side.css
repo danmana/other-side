@@ -33,6 +33,36 @@ body {
     border-left: 1px solid white;
 }
 
+.search-wrapper {
+    right: 10px;
+}
+
+#pac-input {
+    background-color: #fff;
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    margin-left: 0;
+    padding: 11px;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+
+#pac-input:focus {
+    border-color: #4d90fe;
+}
+
+.controls {
+    margin-top: 10px;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    height: 35px;
+    outline: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
 @media (orientation: portrait){
     .map {
         width: 100%;
