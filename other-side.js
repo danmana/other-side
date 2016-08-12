@@ -116,7 +116,6 @@
         function onCenterChanged(){
             var other = getOther(this);
             var c = this.getCenter();
-            console.log(c.lat(), c.lng());
             other.setCenter({
                 lat: -c.lat(),
                 lng: c.lng() + 180
