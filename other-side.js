@@ -3,10 +3,10 @@
     var otherDiv = document.getElementById('other');
     var map, other;
     function initMap() {
-        // Madrid (sinde the its well known and the other side is in New Zeeland, not somewhere in an ocean)
+        // Madrid (since it's well known and the other side is in New Zeeland, not somewhere in an ocean)
         var DEFAULT_LOCATION = {
-            lat: 40.4419125,
-            lng: -3.8723395
+            lat: 40.44818318159315,
+            lng: -3.7405035624999594
         };
         map = new google.maps.Map(mapDiv, {
             center: DEFAULT_LOCATION,
@@ -39,6 +39,7 @@
         function onCenterChanged(){
             var other = getOther(this);
             var c = this.getCenter();
+            console.log(c.lat(), c.lng());
             other.setCenter({
                 lat: -c.lat(),
                 lng: c.lng() + 180
