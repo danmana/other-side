@@ -6,18 +6,71 @@
         // Madrid (since it's well known and the other side is in New Zealand, not somewhere in an ocean)
         var DEFAULT_LOCATION = {
             lat: 40.44818318159315,
-            lng: -3.7405035624999594
+            lng: -3.7405035624999594,
+            zoom: 7
         };
+
+        var saveTimeout;
+        function saveLocation() {
+            if (saveTimeout) {
+                clearTimeout(saveTimeout);
+                saveTimeout = null;
+            }
+            // use a timeout to avoid trashing the location hash too fast
+            saveTimeout = setTimeout(function(){
+                var c = map.getCenter();
+                var z = map.getZoom();
+                top.location.hash = '@' + c.lat().toFixed(7) + ',' + c.lng().toFixed(7) + ',' + z + 'z';
+                saveTimeout = null;
+            },100);
+        }
+
+        function getLocation(){
+            var hash = top.location.hash;
+            var lat, lng, z = 7, parts;
+            if (hash && hash.indexOf('@') !== -1) {
+                hash = hash.substring(hash.indexOf('@') + 1);
+                if (hash[hash.length - 1] === 'z') {
+                    hash = hash.substring(0, hash.length-1);
+                }
+                parts = hash.split(',');
+                if (parts.length >= 2) {
+                    lat = Number(parts[0]);
+                    lng = Number(parts[1])
+                    if (parts.length === 3) {
+                        z = Number(parts[2]);
+                    }
+                    return {
+                        lat: lat,
+                        lng: lng,
+                        zoom: z
+                    };
+                }
+            }
+            return DEFAULT_LOCATION;
+        }
+
+
+        var initialLocation = getLocation();
+
+
+
         map = new google.maps.Map(mapDiv, {
-            center: DEFAULT_LOCATION,
-            zoom: 7,
+            center: {
+                lat: initialLocation.lat,
+                lng: initialLocation.lng
+            },
+            zoom: initialLocation.zoom,
             mapTypeControlOptions: {
                 mapTypeIds: ['roadmap', 'satellite']
             }
         });
         other = new google.maps.Map(otherDiv, {
-            center: {lat: - DEFAULT_LOCATION.lat, lng: DEFAULT_LOCATION.lng + 180},
-            zoom: 7,
+            center: {
+                lat: -initialLocation.lat,
+                lng: initialLocation.lng + 180
+            },
+            zoom: initialLocation.zoom,
             disableDefaultUI: true
         });
 
@@ -119,13 +172,15 @@
             other.setCenter({
                 lat: -c.lat(),
                 lng: c.lng() + 180
-            })
+            });
+            saveLocation();
         }
 
         function onZoomChanged(){
             var other = getOther(this);
             var z = this.getZoom();
             other.setZoom(z);
+            saveLocation();
         }
 
         function onMapTypeChanged(){
