@@ -25,8 +25,7 @@
             },100);
         }
 
-        function getLocation(){
-            var hash = top.location.hash;
+        function getLocation(hash){
             var lat, lng, z = 7, parts;
             if (hash && hash.indexOf('@') !== -1) {
                 hash = hash.substring(hash.indexOf('@') + 1);
@@ -51,7 +50,7 @@
         }
 
 
-        var initialLocation = getLocation();
+        var initialLocation = getLocation(top.location.hash);
 
 
 
@@ -77,6 +76,24 @@
         var info = document.getElementById('info-text');
         other.controls[google.maps.ControlPosition.TOP_LEFT].push(info);
         //info.style.display = 'none';
+
+        var links = document.querySelectorAll('#info-text a'), i, link;
+        for (i=0;i<links.length;i++) {
+            link = links[i];
+            if (link.href.indexOf('#@') !== -1) {
+                link.addEventListener('click', function(e){
+                    var loc = getLocation(this.hash);
+                    map.setCenter({
+                        lat: loc.lat,
+                        lng: loc.lng
+                    });
+                    map.setZoom(loc.zoom);
+                    e.preventDefault();
+                    e.stopPropagation();
+                });
+            }
+        }
+
 
         var ok = document.getElementById('ok');
         var infoIcon = document.getElementById('info-icon');
