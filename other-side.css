@@ -107,6 +107,12 @@ body {
     opacity: 0.9;
 }
 
+.info-content {
+    max-height: 75vh;
+    overflow: auto;
+    padding-bottom: 10px;
+}
+
 @media (orientation: portrait){
     .map {
         width: 100%;
