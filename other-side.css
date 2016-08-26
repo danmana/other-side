@@ -117,4 +117,10 @@ body {
         border-left: none;
         border-top: 1px solid white;
     }
+
+    .info-content {
+        max-height: 35vh;
+        overflow: auto;
+        padding-bottom: 10px;
+    }
 }
